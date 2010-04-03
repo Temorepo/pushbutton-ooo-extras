@@ -1,0 +1,18 @@
+<things version="1" demoName="Death Animation">
+
+  <entity name="blob2" template="blob">
+    <component type="com.threerings.pbe.tasks.demo.DeathAnimationComponent" name="scriptedTask" >
+    	<xRef>@Spatial.x</xRef>
+    	<yRef>@Spatial.y</yRef>
+    	<labelRef>@Render.label</labelRef>
+    	<displayObjectRef>@Render.displayObject</displayObjectRef>
+    	<alphaRef>@Render.alpha</alphaRef>
+    </component>
+    <component type="com.threerings.pbe.tasks.demo.RandomLocationComponent" name="wtf" >
+    	<xRef>@Spatial.x</xRef>
+    	<yRef>@Spatial.y</yRef>
+    </component>
+    
+  </entity>
+  
+</things>
