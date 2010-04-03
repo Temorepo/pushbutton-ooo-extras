@@ -1,15 +1,17 @@
 package com.threerings.pbe.iso {
-import com.pblabs.engine.core.ITickedObject;
-import com.pblabs.engine.entity.EntityComponent;
-import com.pblabs.engine.entity.PropertyReference;
-import flash.display.DisplayObjectContainer;
-import com.threerings.util.ClassUtil;
-import com.threerings.util.Log;
 import as3isolib.core.IIsoDisplayObject;
 import as3isolib.data.INode;
 import as3isolib.display.IsoSprite;
 import as3isolib.display.renderers.DefaultSceneLayoutRenderer;
 import as3isolib.display.scene.IsoScene;
+
+import com.pblabs.engine.core.ITickedObject;
+import com.pblabs.engine.entity.EntityComponent;
+import com.pblabs.engine.entity.PropertyReference;
+import com.threerings.util.ClassUtil;
+import com.threerings.util.Log;
+
+import flash.display.DisplayObjectContainer;
 public class IsoSceneComponent extends EntityComponent implements ITickedObject
 {
     public static const COMPONENT_NAME :String = ClassUtil.tinyClassName(IsoSceneComponent);

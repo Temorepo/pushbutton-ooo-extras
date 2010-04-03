@@ -9,8 +9,6 @@ import as3isolib.graphics.Stroke;
 
 import com.pblabs.engine.entity.IEntity;
 import com.pblabs.engine.entity.PropertyReference;
-import com.threerings.downtown.data.ItemType;
-import com.threerings.downtown.scene.components.ItemComponent;
 import com.threerings.flashbang.util.Rand;
 import com.threerings.util.ClassUtil;
 import com.threerings.util.DebugUtil;
