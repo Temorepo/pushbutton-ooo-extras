@@ -1,21 +1,16 @@
 package com.threerings.pbe.iso {
+import com.pblabs.engine.core.ITickedObject;
+import com.pblabs.engine.entity.EntityComponent;
+import com.pblabs.engine.entity.PropertyReference;
+import flash.display.DisplayObjectContainer;
 import as3isolib.core.IIsoDisplayObject;
 import as3isolib.data.INode;
 import as3isolib.display.IsoSprite;
 import as3isolib.display.renderers.DefaultSceneLayoutRenderer;
 import as3isolib.display.scene.IsoScene;
-
-import com.pblabs.engine.core.ITickedObject;
-import com.pblabs.engine.entity.EntityComponent;
-import com.pblabs.engine.entity.PropertyReference;
-import com.threerings.util.ClassUtil;
-import com.threerings.util.Log;
-
-import flash.display.DisplayObjectContainer;
-public class IsoSceneComponent extends EntityComponent implements ITickedObject
+public class IsoSceneComponent extends EntityComponent
+    implements ITickedObject
 {
-    public static const COMPONENT_NAME :String = ClassUtil.tinyClassName(IsoSceneComponent);
-
     public var displayObjectContainerProperty :PropertyReference;
 
     public function IsoSceneComponent ()
@@ -27,6 +22,22 @@ public class IsoSceneComponent extends EntityComponent implements ITickedObject
         //var renderer :DefaultSceneLayoutRenderer = new DefaultSceneLayoutRenderer();
         //renderer.collisionDetection = collisionFunction;
         //_isoScene.layoutRenderer = renderer;
+    }
+
+    public function get displayContainer () :DisplayObjectContainer
+    {
+        if (displayObjectContainerProperty != null) {
+            return owner.getProperty(displayObjectContainerProperty) as DisplayObjectContainer;
+        }
+        return _localDisplayContainer;
+    }
+
+    public function set displayContainer (val :DisplayObjectContainer) :void
+    {
+        _localDisplayContainer = val;
+        if (_localDisplayContainer != null) {
+            _isoScene.hostContainer = _localDisplayContainer;
+        }
     }
 
     public function get isoScene () :IsoScene
@@ -74,17 +85,11 @@ public class IsoSceneComponent extends EntityComponent implements ITickedObject
         if (isoSpriteA != null && isoSpriteB != null) {
             return isoSpriteA.z + isoSpriteA.height > isoSpriteB.z + isoSpriteB.height ? -1 : 1;
         }
-        log.error("collisionFunction", "objA", objA, "objB", objB);
+        //log.error("collisionFunction", "objA", objA, "objB", objB);
         return 0;
     }
 
-    protected function get displayContainer () :DisplayObjectContainer
-    {
-        return owner.getProperty(displayObjectContainerProperty) as DisplayObjectContainer;
-    }
-
     protected var _isoScene :IsoScene;
-
-    protected static const log :Log = Log.getLog(IsoSceneComponent);
+    protected var _localDisplayContainer :DisplayObjectContainer;
 }
 }
