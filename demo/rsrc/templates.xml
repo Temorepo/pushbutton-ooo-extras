@@ -1,0 +1,25 @@
+<things version="1">
+
+  <template name="blob">
+    <component type="net.amago.pbe.debug.SpriteBlobComponent" name="Render">
+      <scene entityName="SceneDB" componentName="Scene" />
+      <positionProperty>@Spatial.position</positionProperty>
+    </component>
+    <component type="com.pblabs.rendering2D.SimpleSpatialComponent" name="Spatial">
+      <spatialManager entityName="SceneDB" componentName="Spatial"/>
+        <position>
+        <x>70</x>
+        <y>200</y>
+      </position>
+    </component>
+  </template>
+  
+<!--  <template name="SceneDB">
+    <component type="com.pblabs.rendering2D.DisplayObjectScene" name="Scene">
+    </component>
+    <component type="com.pblabs.rendering2D.BasicSpatialManager2D" name="Spatial">
+    </component>
+  </template>
+  -->
+  
+</things>

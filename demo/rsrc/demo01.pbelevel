@@ -1,0 +1,12 @@
+<things version="1" demoName="Easing Types">
+
+  <entity name="blob1" template="blob">
+    <component type="com.threerings.pbe.tasks.demo.ShowEasingComponent" name="scriptedTask" >
+    	<xRef>@Spatial.x</xRef>
+    	<yRef>@Spatial.y</yRef>
+    	<labelRef>@Render.label</labelRef>
+    </component>
+    
+  </entity>
+  
+</things>

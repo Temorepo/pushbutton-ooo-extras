@@ -21,62 +21,63 @@
 // $Id: TickedTaskComponent.as 55 2010-01-06 12:32:20Z dionjw $
 
 package com.threerings.pbe.tasks {
+import com.pblabs.engine.PBE;
 import com.pblabs.engine.core.ITickedObject;
 import com.pblabs.engine.core.ProcessManager;
 
 public class TickedTaskComponent extends TaskComponent
 {
-	
-	/**
-	 * The update priority for this component. Higher numbered priorities have
-	 * onInterpolateTick and onTick called before lower priorities.
-	 */
-	public var updatePriority:Number = 0.0;
-	
-	private var _registerForUpdates:Boolean = true;
-	private var _isRegisteredForUpdates:Boolean = false;
-	
-	/**
-	 * Set to register/unregister for tick updates.
-	 */
-	public function set registerForTicks(value:Boolean):void
-	{
-		_registerForUpdates = value;
-		
-		if(_registerForUpdates && !_isRegisteredForUpdates)
-		{
-			// Need to register.
-			_isRegisteredForUpdates = true;
-			ProcessManager.instance.addTickedObject(this, updatePriority);                
-		}
-		else if(!_registerForUpdates && _isRegisteredForUpdates)
-		{
-			// Need to unregister.
-			_isRegisteredForUpdates = false;
-			ProcessManager.instance.removeTickedObject(this);
-		}
-	}
-	
-	/**
-	 * @private
-	 */
-	public function get registerForTicks():Boolean
-	{
-		return _registerForUpdates;
-	}
-	
-	override protected function onAdd():void
-	{
-		super.onAdd();
-		// This causes the component to be registerd if it isn't already.
-		registerForTicks = registerForTicks;
-	}
-	
-	override protected function onRemove():void
-	{
-		super.onRemove();
-		// Make sure we are unregistered.
-		registerForTicks = false;
-	}
+
+    /**
+     * The update priority for this component. Higher numbered priorities have
+     * onInterpolateTick and onTick called before lower priorities.
+     */
+    public var updatePriority:Number = 0.0;
+
+    private var _registerForUpdates:Boolean = true;
+    private var _isRegisteredForUpdates:Boolean = false;
+
+    /**
+     * Set to register/unregister for tick updates.
+     */
+    public function set registerForTicks(value:Boolean):void
+    {
+        _registerForUpdates = value;
+
+        if(_registerForUpdates && !_isRegisteredForUpdates)
+        {
+            // Need to register.
+            _isRegisteredForUpdates = true;
+            PBE.processManager.addTickedObject(this, updatePriority);
+        }
+        else if(!_registerForUpdates && _isRegisteredForUpdates)
+        {
+            // Need to unregister.
+            _isRegisteredForUpdates = false;
+            PBE.processManager.removeTickedObject(this);
+        }
+    }
+
+    /**
+     * @private
+     */
+    public function get registerForTicks():Boolean
+    {
+        return _registerForUpdates;
+    }
+
+    override protected function onAdd():void
+    {
+        super.onAdd();
+        // This causes the component to be registerd if it isn't already.
+        registerForTicks = registerForTicks;
+    }
+
+    override protected function onRemove():void
+    {
+        super.onRemove();
+        // Make sure we are unregistered.
+        registerForTicks = false;
+    }
 }
 }
