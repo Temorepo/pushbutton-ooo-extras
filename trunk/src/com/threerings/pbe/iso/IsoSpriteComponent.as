@@ -1,4 +1,12 @@
 package com.threerings.pbe.iso {
+import com.pblabs.engine.entity.EntityComponent;
+import com.pblabs.engine.entity.IEntity;
+import com.pblabs.engine.entity.PropertyReference;
+import flash.display.Sprite;
+import com.threerings.flashbang.util.Rand;
+import com.threerings.util.ClassUtil;
+import com.threerings.util.Log;
+import com.threerings.util.StringUtil;
 import as3isolib.core.IsoContainer;
 import as3isolib.display.IsoSprite;
 import as3isolib.display.primitive.IsoBox;
@@ -6,20 +14,7 @@ import as3isolib.display.scene.IsoScene;
 import as3isolib.geom.Pt;
 import as3isolib.graphics.SolidColorFill;
 import as3isolib.graphics.Stroke;
-
-import com.pblabs.engine.entity.IEntity;
-import com.pblabs.engine.entity.PropertyReference;
-import com.threerings.flashbang.util.Rand;
-import com.threerings.util.ClassUtil;
-import com.threerings.util.DebugUtil;
-import com.threerings.util.Log;
-import com.threerings.util.StringUtil;
-
-import flash.display.Sprite;
-
-import net.amago.pbe.base.EntityComponentListener;
-
-public class IsoSpriteComponent extends EntityComponentListener
+public class IsoSpriteComponent extends EntityComponent
 {
     public static const COMPONENT_NAME :String = ClassUtil.tinyClassName(IsoSpriteComponent);
 
@@ -194,29 +189,7 @@ public class IsoSpriteComponent extends EntityComponentListener
         return StringUtil.simpleToString(this, [ "isIsoScene", "x", "y", "z", "isometricVolume" ]);
     }
 
-    override protected function onAdd () :void
-    {
-        super.onAdd();
-
-        for each (var eventType :String in dirtyEvents) {
-            registerListener(owner.eventDispatcher, eventType, update);
-        }
-    }
-
-    override protected function onRemove () :void
-    {
-        super.onRemove();
-        removeFromIsoScene();
-    }
-
-    override protected function onReset () :void
-    {
-        if (autoAddToScene && _isoSceneComponent == null) {
-            addToIsoSceneComponent();
-        }
-    }
-
-    protected function update (... _) :void
+    public function update (... _) :void
     {
         if (owner == null) {
             return;
@@ -242,14 +215,37 @@ public class IsoSpriteComponent extends EntityComponentListener
         _isoSprite.invalidatePosition();
     }
 
+    override protected function onAdd () :void
+    {
+        _dirtyEvents = dirtyEvents;
+        for each (var eventType :String in _dirtyEvents) {
+            owner.eventDispatcher.addEventListener(eventType, update);
+        }
+    }
+
+    override protected function onRemove () :void
+    {
+        for each (var eventType :String in _dirtyEvents) {
+            owner.eventDispatcher.removeEventListener(eventType, update);
+        }
+        removeFromIsoScene();
+    }
+
+    override protected function onReset () :void
+    {
+        if (autoAddToScene && _isoSceneComponent == null) {
+            addToIsoSceneComponent();
+        }
+    }
+
     protected function get spriteLayer () :Sprite
     {
         return owner.getProperty(spriteLayerProperty) as Sprite;
     }
 
     protected var _debug :Boolean;
-
     protected var _debugIsoBox :IsoBox = new IsoBox();
+    protected var _dirtyEvents :Array;
     protected var _isometricVolume :Pt;
     protected var _isoSceneComponent :IsoSceneComponent;
     protected var _isoSprite :IsoSprite = new IsoSprite();
