@@ -27,12 +27,12 @@ import com.pblabs.engine.entity.PropertyReference;
 
 import mx.effects.easing.*;
 
-public class AnimateValueTask extends InterpolatingTask
+public class AnimatePropertyTask extends InterpolatingTask
 {
     public static function CreateLinear (ref :PropertyReference, targetValue :Number, time :Number)
-        :AnimateValueTask
+        :AnimatePropertyTask
     {
-        return new AnimateValueTask(
+        return new AnimatePropertyTask(
             ref,
             targetValue,
             time,
@@ -40,9 +40,9 @@ public class AnimateValueTask extends InterpolatingTask
     }
 
     public static function CreateSmooth (ref :PropertyReference, targetValue :Number, time :Number)
-        :AnimateValueTask
+        :AnimatePropertyTask
     {
-        return new AnimateValueTask(
+        return new AnimatePropertyTask(
             ref,
             targetValue,
             time,
@@ -50,9 +50,9 @@ public class AnimateValueTask extends InterpolatingTask
     }
 
     public static function CreateEaseIn (ref :PropertyReference, targetValue :Number, time :Number)
-        :AnimateValueTask
+        :AnimatePropertyTask
     {
-        return new AnimateValueTask(
+        return new AnimatePropertyTask(
             ref,
             targetValue,
             time,
@@ -60,16 +60,16 @@ public class AnimateValueTask extends InterpolatingTask
     }
 
     public static function CreateEaseOut (ref :PropertyReference, targetValue :Number, time :Number)
-        :AnimateValueTask
+        :AnimatePropertyTask
     {
-        return new AnimateValueTask(
+        return new AnimatePropertyTask(
             ref,
             targetValue,
             time,
             mx.effects.easing.Cubic.easeOut);
     }
 
-    public function AnimateValueTask (
+    public function AnimatePropertyTask (
         ref :PropertyReference,
         targetValue :Number,
         time :Number = 0,
@@ -103,7 +103,7 @@ public class AnimateValueTask extends InterpolatingTask
 
     override public function clone () :IEntityTask
     {
-        return new AnimateValueTask(_valueRef, _to, _totalTime, _easingFn);
+        return new AnimatePropertyTask(_valueRef, _to, _totalTime, _easingFn);
     }
 
     protected var _to :Number;

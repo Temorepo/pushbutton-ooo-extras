@@ -25,7 +25,7 @@ package com.threerings.pbe.tasks {
 import com.pblabs.engine.entity.PropertyReference;
 
 import mx.effects.easing.*;
-import com.threerings.pbe.tasks.AnimateValueTask;
+import com.threerings.pbe.tasks.AnimatePropertyTask;
 
 public class LocationTask extends ParallelTask
 {
@@ -56,8 +56,8 @@ public class LocationTask extends ParallelTask
     public function LocationTask (xRef :PropertyReference, yRef :PropertyReference, x :Number, y
     :Number, time :Number = 0, easingFn :Function = null)
     {
-        super(new AnimateValueTask(xRef, x, time, easingFn),
-            new AnimateValueTask(yRef, y, time, easingFn));
+        super(new AnimatePropertyTask(xRef, x, time, easingFn),
+            new AnimatePropertyTask(yRef, y, time, easingFn));
     }
 
 }
