@@ -18,7 +18,7 @@
 //
 // Copyright 2008 Three Rings Design
 //
-// $Id: AnimateValueTask.as 55 2010-01-06 12:32:20Z dionjw $
+// $Id: AnimatePropertyTask.as 55 2010-01-06 12:32:20Z dionjw $
 
 package com.threerings.pbe.tasks {
 
