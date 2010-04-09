@@ -80,7 +80,7 @@ public class AnimateValueTask extends InterpolatingTask
 
         _elapsedTime += dt;
 
-        obj[_fieldName] = interpolate(_from, _to, _elapsedTime, _totalTime, _easingFn);
+        _obj[_fieldName] = interpolate(_from, _to, _elapsedTime, _totalTime, _easingFn);
 
         return (_elapsedTime >= _totalTime);
     }
