@@ -48,7 +48,12 @@ public class InterpolatingTask
         return new InterpolatingTask(_totalTime, _easingFn);
     }
 
-    protected static function interpolate (a :Number, b :Number, t :Number, duration :Number,
+    protected function interpolate (a :Number, b :Number) :Number
+    {
+        return interp(a, b, _elapsedTime, _totalTime, _easingFn);
+    }
+
+    protected static function interp (a :Number, b :Number, t :Number, duration :Number,
         easingFn :Function) :Number
     {
         // we need to rejuggle arguments to fit the signature of the mx easing functions:

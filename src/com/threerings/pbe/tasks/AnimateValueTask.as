@@ -78,9 +78,9 @@ public class AnimateValueTask extends InterpolatingTask
             }
         }
 
-        _elapsedTime += dt;
+        super.update(dt, obj);
 
-        _obj[_fieldName] = interpolate(_from, _to, _elapsedTime, _totalTime, _easingFn);
+        _obj[_fieldName] = interpolate(_from, _to);
 
         return (_elapsedTime >= _totalTime);
     }
