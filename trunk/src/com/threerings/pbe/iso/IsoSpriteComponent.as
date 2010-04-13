@@ -161,7 +161,7 @@ public class IsoSpriteComponent extends EntityComponent
         if (scene != null) {
             addToIsoScene(scene);
         } else {
-            log.warning("addToIsoSceneComponent", "scene", scene);
+            log.warning("addToIsoSceneComponent", "scene", scene, "isoSceneProperty", isoSceneProperty);
             throw new Error();
         }
     }
@@ -229,6 +229,7 @@ public class IsoSpriteComponent extends EntityComponent
             owner.eventDispatcher.removeEventListener(eventType, update);
         }
         removeFromIsoScene();
+        _dirtyEvents = null;
     }
 
     override protected function onReset () :void

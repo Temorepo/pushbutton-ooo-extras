@@ -93,10 +93,8 @@ public class AnimatePropertyTask extends InterpolatingTask
                 throw new Error("_valueRef must be non null, and must be a numerical property.");
             }
         }
-
-        _elapsedTime += dt;
-
-        obj.setProperty(_valueRef, interpolate(_from, _to, _elapsedTime, _totalTime, _easingFn));
+        super.update(dt, obj);
+        obj.setProperty(_valueRef, interpolate(_from, _to));
 
         return (_elapsedTime >= _totalTime);
     }

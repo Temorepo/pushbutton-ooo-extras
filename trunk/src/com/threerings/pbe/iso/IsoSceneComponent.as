@@ -75,6 +75,7 @@ public class IsoSceneComponent extends EntityComponent implements ITickedObject
     {
         super.onRemove();
         _isoScene.removeAllChildren();
+        _isoScene.hostContainer = null;
     }
 
     override protected function onReset () :void
