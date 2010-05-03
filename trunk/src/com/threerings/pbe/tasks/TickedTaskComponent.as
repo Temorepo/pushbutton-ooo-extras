@@ -22,8 +22,6 @@
 
 package com.threerings.pbe.tasks {
 import com.pblabs.engine.PBE;
-import com.pblabs.engine.core.ITickedObject;
-import com.pblabs.engine.core.ProcessManager;
 
 public class TickedTaskComponent extends TaskComponent
 {

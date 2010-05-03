@@ -25,6 +25,7 @@ package com.threerings.pbe.tasks {
 import com.pblabs.engine.entity.PropertyReference;
 
 import mx.effects.easing.*;
+
 import com.threerings.pbe.tasks.AnimatePropertyTask;
 
 public class LocationTask extends ParallelTask

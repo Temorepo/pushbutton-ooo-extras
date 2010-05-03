@@ -22,9 +22,9 @@
 
 package com.threerings.pbe.tasks {
 
-import com.pblabs.engine.entity.IEntity;
-
 import flash.display.DisplayObject;
+
+import com.pblabs.engine.entity.IEntity;
 
 public class VisibleTask
     implements IEntityTask

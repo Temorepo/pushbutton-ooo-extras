@@ -23,6 +23,7 @@
 package com.threerings.pbe.tasks {
 
 import com.pblabs.engine.entity.IEntity;
+
 import com.threerings.flashbang.CuePoint;
 
 public class CuePointTask

@@ -23,7 +23,6 @@
 package com.threerings.pbe.tasks {
 import com.pblabs.engine.entity.IEntity;
 
-
 public interface IEntityTask
 {
 

@@ -1,13 +1,14 @@
 package com.threerings.pbe.tasks
 {
 
-import com.pblabs.engine.entity.IEntity;
-import com.threerings.pbe.tasks.IEntityTask;
-import com.threerings.pbe.tasks.InterpolatingTask;
-
 import flash.display.DisplayObject;
 
+import com.pblabs.engine.entity.IEntity;
+
 import mx.effects.easing.*;
+
+import com.threerings.pbe.tasks.IEntityTask;
+import com.threerings.pbe.tasks.InterpolatingTask;
 
 public class AlphaTask extends InterpolatingTask
 {

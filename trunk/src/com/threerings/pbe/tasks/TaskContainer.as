@@ -22,8 +22,10 @@
 
 package com.threerings.pbe.tasks {
 import com.pblabs.engine.entity.IEntity;
+
 import com.threerings.util.ArrayUtil;
 import com.threerings.util.Assert;
+
 public class TaskContainer
     implements IEntityTask
 {
