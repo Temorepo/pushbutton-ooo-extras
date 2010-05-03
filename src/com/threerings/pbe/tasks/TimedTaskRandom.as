@@ -1,7 +1,8 @@
 package com.threerings.pbe.tasks
 {
-import com.threerings.flashbang.util.Rand;
 import com.threerings.util.Preconditions;
+
+import com.threerings.flashbang.util.Rand;
 
 public class TimedTaskRandom extends TimedTask
 {

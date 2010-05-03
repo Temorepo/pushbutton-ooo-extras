@@ -23,9 +23,10 @@
 package com.threerings.pbe.tasks {
 
 import com.pblabs.engine.entity.IEntity;
-import com.threerings.util.MathUtil;
 
 import mx.effects.easing.Linear;
+
+import com.threerings.util.MathUtil;
 
 public class InterpolatingTask
     implements IEntityTask

@@ -1,6 +1,7 @@
 package
 {
-import as3isolib.core.IsoContainer;
+import flash.display.Sprite;
+
 import as3isolib.display.scene.IsoGrid;
 import as3isolib.geom.Pt;
 
@@ -9,20 +10,17 @@ import com.pblabs.engine.entity.IEntity;
 import com.pblabs.engine.entity.PropertyReference;
 import com.pblabs.engine.entity.allocateEntity;
 import com.pblabs.rendering2D.DisplayObjectRenderer;
+
+import tasks.TasksDemo;
+
 import com.threerings.pbe.iso.IsoSceneComponent;
 import com.threerings.pbe.iso.IsoSpriteComponent;
 import com.threerings.pbe.iso.tests.BasicTest;
-import com.threerings.pbe.tasks.AnimatePropertyTask;
 import com.threerings.pbe.tasks.AnimateValueTask;
 import com.threerings.pbe.tasks.FunctionTask;
 import com.threerings.pbe.tasks.IEntityTask;
-import com.threerings.pbe.tasks.ParallelTask;
 import com.threerings.pbe.tasks.RepeatingTask;
 import com.threerings.pbe.tasks.TickedTaskComponent;
-
-import flash.display.Sprite;
-
-import tasks.TasksDemo;
 
 public class Main extends Sprite
 {

@@ -1,5 +1,7 @@
 package com.threerings.pbe.iso {
-import as3isolib.core.IsoContainer;
+import flash.display.Sprite;
+import flash.geom.Point;
+
 import as3isolib.display.IsoSprite;
 import as3isolib.display.primitive.IsoBox;
 import as3isolib.display.scene.IsoScene;
@@ -10,13 +12,12 @@ import as3isolib.graphics.Stroke;
 import com.pblabs.engine.entity.EntityComponent;
 import com.pblabs.engine.entity.IEntity;
 import com.pblabs.engine.entity.PropertyReference;
-import com.threerings.flashbang.util.Rand;
+
 import com.threerings.util.ClassUtil;
 import com.threerings.util.Log;
 import com.threerings.util.StringUtil;
 
-import flash.display.Sprite;
-import flash.geom.Point;
+import com.threerings.flashbang.util.Rand;
 
 public class IsoSpriteComponent extends EntityComponent
 {

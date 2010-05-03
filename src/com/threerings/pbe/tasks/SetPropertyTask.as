@@ -22,7 +22,7 @@
 
 package com.threerings.pbe.tasks {
 import com.pblabs.engine.entity.IEntity;
-import flash.display.MovieClip;
+
 public class SetPropertyTask implements IEntityTask
 {
     public function SetPropertyTask (parent :*, propName :String, val :*)

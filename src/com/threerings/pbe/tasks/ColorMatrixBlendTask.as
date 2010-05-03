@@ -21,14 +21,15 @@
 // $Id: ColorMatrixBlendTask.as 55 2010-01-06 12:32:20Z dionjw $
 
 package com.threerings.pbe.tasks {
-import com.pblabs.engine.entity.IEntity;
-import com.threerings.display.ColorMatrix;
-import com.threerings.display.FilterUtil;
-
 import flash.display.DisplayObject;
 import flash.filters.ColorMatrixFilter;
 
+import com.pblabs.engine.entity.IEntity;
+
 import mx.effects.easing.*;
+
+import com.threerings.display.ColorMatrix;
+import com.threerings.display.FilterUtil;
 
 public class ColorMatrixBlendTask 
 	implements IEntityTask
