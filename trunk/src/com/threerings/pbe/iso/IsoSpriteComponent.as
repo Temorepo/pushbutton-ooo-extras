@@ -1,12 +1,4 @@
 package com.threerings.pbe.iso {
-import com.pblabs.engine.entity.EntityComponent;
-import com.pblabs.engine.entity.IEntity;
-import com.pblabs.engine.entity.PropertyReference;
-import flash.display.Sprite;
-import com.threerings.flashbang.util.Rand;
-import com.threerings.util.ClassUtil;
-import com.threerings.util.Log;
-import com.threerings.util.StringUtil;
 import as3isolib.core.IsoContainer;
 import as3isolib.display.IsoSprite;
 import as3isolib.display.primitive.IsoBox;
@@ -14,6 +6,18 @@ import as3isolib.display.scene.IsoScene;
 import as3isolib.geom.Pt;
 import as3isolib.graphics.SolidColorFill;
 import as3isolib.graphics.Stroke;
+
+import com.pblabs.engine.entity.EntityComponent;
+import com.pblabs.engine.entity.IEntity;
+import com.pblabs.engine.entity.PropertyReference;
+import com.threerings.flashbang.util.Rand;
+import com.threerings.util.ClassUtil;
+import com.threerings.util.Log;
+import com.threerings.util.StringUtil;
+
+import flash.display.Sprite;
+import flash.geom.Point;
+
 public class IsoSpriteComponent extends EntityComponent
 {
     public static const COMPONENT_NAME :String = ClassUtil.tinyClassName(IsoSpriteComponent);
@@ -29,6 +33,8 @@ public class IsoSpriteComponent extends EntityComponent
     public var xProperty :PropertyReference;
     public var yProperty :PropertyReference;
     public var zProperty :PropertyReference;
+
+    public var offset :Point;
 
     public static function getFrom (entity :IEntity) :IsoSpriteComponent
     {
@@ -129,6 +135,11 @@ public class IsoSpriteComponent extends EntityComponent
         if (sceneComp == null) {
             log.error("onReset", "sceneComp", sceneComp, "spriteLayerProperty", spriteLayerProperty);
             return;
+        }
+
+        if (offset != null) {
+            adjustedLayer.x = offset.x;
+            adjustedLayer.y = offset.y;
         }
 
         adjustedLayer.addChild(sceneComp);
