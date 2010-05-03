@@ -173,7 +173,8 @@ public class IsoSpriteComponent extends EntityComponent
         if (scene != null) {
             addToIsoScene(scene);
         } else {
-            log.warning("addToIsoSceneComponent", "scene", scene, "isoSceneProperty", isoSceneProperty);
+            log.warning("addToIsoSceneComponent", "scene", scene, "isoSceneProperty",
+                isoSceneProperty);
             throw new Error();
         }
     }
@@ -225,6 +226,15 @@ public class IsoSpriteComponent extends EntityComponent
             z = owner.getProperty(zProperty) as Number;
         }
         _isoSprite.invalidatePosition();
+    }
+
+    public function forceImmediateRender () :void
+    {
+        if (_isoSceneComponent == null) {
+            return;
+        }
+
+        _isoSceneComponent.isoScene.render();
     }
 
     override protected function onAdd () :void
