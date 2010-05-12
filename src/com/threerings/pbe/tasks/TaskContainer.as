@@ -92,28 +92,9 @@ public class TaskContainer
 
     public function update (dt :Number, obj :IEntity) :Boolean
     {
-        var result :Boolean = applyFunction(
-            function (task :IEntityTask) :Boolean {
-                return task.update(dt, obj);
-            });
-
-        return result;
-    }
-
-    /**
-     * Helper function that applies the function f to each object in the container
-     * (for parallel tasks) or the first object in the container (for serial and repeating tasks)
-     * and returns true if there are no more active tasks in the container.
-     * f must be of the form:
-     * function f (task :IEntityTask) :Boolean
-     * it must return true if the task is complete after f is applied.
-     */
-    protected function applyFunction (f :Function) :Boolean
-    {
         _invalidated = false;
 
-        var n :int = _tasks.length;
-        for (var i :int = 0; i < n; ++i) {
+        for (var i :int = 0; i < _tasks.length; ++i) {
 
             var task :IEntityTask = (_tasks[i] as IEntityTask);
 
@@ -122,7 +103,7 @@ public class TaskContainer
                 continue;
             }
 
-            var complete :Boolean = f(task);
+            var complete :Boolean = task.update(dt, obj);
 
             if (_invalidated) {
                 // The TaskContainer was destroyed by its containing

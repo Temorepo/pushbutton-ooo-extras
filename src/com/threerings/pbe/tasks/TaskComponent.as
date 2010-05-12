@@ -38,7 +38,7 @@ public class TaskComponent extends EntityComponent implements ITickedObject
 
     public static function getFrom (entity :IEntity) :TaskComponent
     {
-        return entity.lookupComponentByName(TaskComponent.COMPONENT_NAME) as TaskComponent;
+        return entity.lookupComponentByName(COMPONENT_NAME) as TaskComponent;
     }
 
     /** Adds a named task to this IEntity. */
@@ -99,7 +99,22 @@ public class TaskComponent extends EntityComponent implements ITickedObject
 
     public function onTick (dt :Number) :void
     {
-        update(dt);
+        _updatingTasks = true;
+        _anonymousTasks.update(dt, owner);
+        if (!_namedTasks.isEmpty()) {
+            _thisEntity = owner;
+            _delta = dt;
+            _namedTasks.forEach(updateNamedTaskContainer);
+        }
+        _updatingTasks = false;
+    }
+
+    protected function updateNamedTaskContainer (name :*, tasks :*) :void {
+        // Tasks may be removed from the object during the _namedTasks.forEach() loop.
+        // When this happens, we'll get undefined 'tasks' objects.
+        if (undefined !== tasks) {
+            (tasks as ParallelTask).update(_delta, _thisEntity);
+        }
     }
 
     /** Removes all tasks from the IEntity. */
@@ -138,24 +153,6 @@ public class TaskComponent extends EntityComponent implements ITickedObject
         return "namedTasks: " + _namedTasks.keys().join(", ");
     }
 
-    public function update (dt :Number) :void
-    {
-        _updatingTasks = true;
-        _anonymousTasks.update(dt, owner);
-        if (!_namedTasks.isEmpty()) {
-            var thisEntity :IEntity = owner;
-            _namedTasks.forEach(updateNamedTaskContainer);
-        }
-        _updatingTasks = false;
-
-        function updateNamedTaskContainer (name :*, tasks :*) :void {
-            // Tasks may be removed from the object during the _namedTasks.forEach() loop.
-            // When this happens, we'll get undefined 'tasks' objects.
-            if (undefined !== tasks) {
-                (tasks as ParallelTask).update(dt, thisEntity);
-            }
-        }
-    }
 
     override protected function onRemove () :void
     {
@@ -168,5 +165,10 @@ public class TaskComponent extends EntityComponent implements ITickedObject
     // stores a mapping from String to ParallelTask
     protected var _namedTasks :Map = Maps.newSortedMapOf(String);
     protected var _updatingTasks :Boolean;
+
+    // The tick value and owner during an update.  Only valid while _updatintTasks is true.
+    protected var _delta :Number;
+    protected var _thisEntity :IEntity;
+
 }
 }
