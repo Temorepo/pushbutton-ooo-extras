@@ -134,10 +134,11 @@ public class IsoSpriteComponent extends SceneEntityComponent
 
     override public function updateTransform (updateProps :Boolean = false) :void
     {
-        if (_isoSceneComponent == null) {
-            super.updateTransform(updateProps);
+        if (_isoSceneComponent != null) {
+            updateProperties();
+            forceImmediateRender();
         } else {
-            //Do nothing
+            super.updateTransform(updateProps);
         }
     }
 
