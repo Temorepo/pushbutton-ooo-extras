@@ -37,6 +37,7 @@ public class IsoSpriteComponent extends SceneEntityComponent
     public function IsoSpriteComponent (d :DisplayObject = null)
     {
         super(d);
+        _isoSprite = new IsoSprite();
     }
 
     public function get debug () :Boolean
@@ -83,21 +84,18 @@ public class IsoSpriteComponent extends SceneEntityComponent
             _isometricVolume = vol.clone() as Pt;
         }
         _isoSprite.setSize(vol.x, vol.y, vol.z);
-        _debugIsoBox.setSize(vol.x, vol.y, vol.z);
     }
 
     override public function set x (val :Number) :void
     {
         super.x = val;
         _isoSprite.x = val;
-        _debugIsoBox.x = val;
     }
 
     override public function set y (val :Number) :void
     {
         super.y = val;
         _isoSprite.y = val;
-        _debugIsoBox.y = val;
     }
 
     public function get z () :Number
@@ -108,7 +106,6 @@ public class IsoSpriteComponent extends SceneEntityComponent
     public function set z (val :Number) :void
     {
         _isoSprite.z = val;
-        _debugIsoBox.z = val;
     }
 
     public function setLoc (pt :Pt) :void
@@ -157,7 +154,6 @@ public class IsoSpriteComponent extends SceneEntityComponent
         var vol :Pt = isometricVolume;
         if (vol != null) {
             _isoSprite.setSize(vol.x, vol.y, vol.z);
-            _debugIsoBox.setSize(vol.x, vol.y, vol.z);
         }
 
         if (zProperty != null) {
@@ -166,12 +162,20 @@ public class IsoSpriteComponent extends SceneEntityComponent
         _isoSprite.invalidatePosition();
     }
 
-    protected var _debug :Boolean;
-    protected var _debugIsoBox :IsoBox = new IsoBox();
-    protected var _dirtyEvents :Array;
-    protected var _isometricVolume :Pt;
-    protected var _isoSprite :IsoSprite = new IsoSprite();
+    override protected function onRemove () :void
+    {
+        super.onRemove();
+        _debug = false;
+        _isometricVolume = null;
+        _isoSceneComponent = null;
+        offset = null;
+        zProperty = null;
+        isometricVolumeProperty = null;
+    }
 
+    protected var _debug :Boolean;
+    protected var _isometricVolume :Pt;
+    protected var _isoSprite :IsoSprite;
     internal var _isoSceneComponent :SceneLayerIsometric;
 
     protected static const log :Log = Log.getLog(IsoSpriteComponent);
