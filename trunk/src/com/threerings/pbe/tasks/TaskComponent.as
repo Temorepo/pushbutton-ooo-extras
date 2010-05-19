@@ -24,7 +24,6 @@ package com.threerings.pbe.tasks {
 import com.pblabs.engine.core.ITickedObject;
 import com.pblabs.engine.entity.EntityComponent;
 import com.pblabs.engine.entity.IEntity;
-
 import com.threerings.util.Map;
 import com.threerings.util.Maps;
 
@@ -102,6 +101,10 @@ public class TaskComponent extends EntityComponent implements ITickedObject
 
     public function onTick (dt :Number) :void
     {
+        if (paused) {
+            return;
+        }
+
         _updatingTasks = true;
         var entity :IEntity = owner;
         _anonymousTasks.update(dt, entity);
@@ -190,6 +193,8 @@ public class TaskComponent extends EntityComponent implements ITickedObject
     // The tick value and owner during an update.  Only valid while _updatintTasks is true.
     protected var _delta :Number;
     protected var _thisEntity :IEntity;
+
+    public var paused :Boolean;
 
 }
 }
