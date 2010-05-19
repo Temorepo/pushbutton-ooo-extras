@@ -1,13 +1,13 @@
 package com.threerings.pbe.iso {
+import flash.display.Sprite;
+
 import as3isolib.core.IIsoDisplayObject;
-import as3isolib.display.scene.IsoGrid;
 import as3isolib.display.scene.IsoScene;
+
+import com.threerings.util.Preconditions;
 
 import com.threerings.flashbang.pushbutton.scene.SceneEntityComponent;
 import com.threerings.flashbang.pushbutton.scene.SceneLayer;
-import com.threerings.util.Preconditions;
-
-import flash.display.Sprite;
 
 public class SceneLayerIsometric extends SceneLayer
 {
