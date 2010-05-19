@@ -1,13 +1,12 @@
 package com.threerings.pbe.iso
 {
+import com.threerings.util.Preconditions;
+
+import com.threerings.flashbang.pushbutton.scene.SceneEntityComponent;
+
 import com.threerings.downtown.scene.tiles.TileComponent;
 import com.threerings.downtown.scene.tiles.TileGrid;
 import com.threerings.downtown.scene.tiles.TileGridComponent;
-import com.threerings.flashbang.pushbutton.scene.SceneEntityComponent;
-import com.threerings.util.Preconditions;
-
-import net.amago.pathfinding.astar.INode;
-import net.amago.pathfinding.astar.SearchResults;
 
 public class SceneLayerIsometricGrid extends SceneLayerIsometric
 {

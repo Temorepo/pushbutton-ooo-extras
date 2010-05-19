@@ -24,8 +24,8 @@ package com.threerings.pbe.tasks {
 import com.pblabs.engine.core.ITickedObject;
 import com.pblabs.engine.entity.EntityComponent;
 import com.pblabs.engine.entity.IEntity;
+
 import com.threerings.util.Map;
-import com.threerings.util.Maps;
 
 /**
  * If you're using the Pushbutton engine as your main framework, don't use this class.
