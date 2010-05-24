@@ -135,6 +135,7 @@ public class IsoSpriteComponent extends SceneEntityComponent
         } else {
             super.updateTransform(updateProps);
         }
+        _transformDirty = false;
     }
 
     override protected function updateProperties () :void
