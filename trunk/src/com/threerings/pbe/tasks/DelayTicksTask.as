@@ -2,14 +2,11 @@ package com.threerings.pbe.tasks
 {
 import com.pblabs.engine.entity.IEntity;
 
-import com.threerings.util.Preconditions;
-
 public class DelayTicksTask
     implements IEntityTask
 {
     public function DelayTicksTask (ticks :int = 1)
     {
-        Preconditions.checkRange(ticks, 1, Number.NaN);
         _ticks = ticks;
     }
 
